@@ -125,7 +125,7 @@
       initialOrigin = {},
       newOrigin = '',
       computedStyle = window.getComputedStyle(el);
-      initialOrigin.string = computedStyle['-webkit-transform-origin'] || computedStyle['transform-origin'] || computedStyle.transformOrigin;
+      initialOrigin.string = computedStyle['transform-origin'] || computedStyle.transformOrigin || computedStyle['-webkit-transform-origin'] || computedStyle.msTransformOrigin;
       initialOrigin.array = initialOrigin.string.split(' ');
       initialOrigin.x = +initialOrigin.array[0].substr(0, initialOrigin.array[0].length - 2);
       initialOrigin.y = +initialOrigin.array[1].substr(0, initialOrigin.array[1].length - 2);
