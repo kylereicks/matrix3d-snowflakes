@@ -97,7 +97,8 @@
       0, 0, 0, 1
     ],
     getComputedMatrix: function(element){
-      var m = window.getComputedStyle(element).transform || window.getComputedStyle(element).webkitTransform,
+      var computedStyle = window.getComputedStyle(element),
+      m = computedStyle.transform || computedStyle['-webkit-transform'] || computedStyle['-moz-transform'] || computedStyle['-o-transform'] || computedStyle['-ms-transform'],
       ml = m.length;
       if('matrix3d' === m.substr(0, 8)){
         m = m.substr(8).replace(/[\(\)]/g, '').split(',');
@@ -125,7 +126,7 @@
       initialOrigin = {},
       newOrigin = '',
       computedStyle = window.getComputedStyle(el);
-      initialOrigin.string = computedStyle['transform-origin'] || computedStyle.transformOrigin || computedStyle['-webkit-transform-origin'] || computedStyle.msTransformOrigin;
+      initialOrigin.string = computedStyle['transform-origin'] || computedStyle.transformOrigin || computedStyle['-webkit-transform-origin'] || computedStyle['-moz-transform-origin'] || computedStyle['-o-transform-origin'] || computedStyle['-ms-transform-origin'];
       initialOrigin.array = initialOrigin.string.split(' ');
       initialOrigin.x = +initialOrigin.array[0].substr(0, initialOrigin.array[0].length - 2);
       initialOrigin.y = +initialOrigin.array[1].substr(0, initialOrigin.array[1].length - 2);
